@@ -5,7 +5,7 @@ import {
   Optional,
 } from '@angular/core'
 import { Configuration } from './configuration'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpClientXsrfModule } from '@angular/common/http'
 
 import { CustomstyleApiService } from './api/customstyle.api.service'
 import { GroupsApiService } from './api/groups.api.service'
@@ -38,7 +38,12 @@ import { UsersearchesApiService } from './api/usersearches.api.service'
 import { UserselectionsApiService } from './api/userselections.api.service'
 
 @NgModule({
-  imports: [],
+  imports: [
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-CSRF-TOKEN',
+    }),
+  ],
   declarations: [],
   exports: [],
   providers: [],
